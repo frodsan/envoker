@@ -25,15 +25,15 @@ scope "load" do
   test "load environment vars" do
     Envoker.load(FILE)
 
-    assert_equal "secret", ENV["secret"]
+    assert_equal "secret", ENV["SECRET"]
   end
 
   test "don't override environment vars" do
-    ENV["secret"] = "supersecret"
+    ENV["SECRET"] = "supersecret"
 
     Envoker.load(FILE)
 
-    assert_equal "supersecret", ENV["secret"]
+    assert_equal "supersecret", ENV["SECRET"]
   end
 end
 
@@ -41,7 +41,7 @@ scope "fetch" do
   test "return value from ENV" do
     Envoker.load(FILE)
 
-    assert_equal "secret", Envoker.fetch("secret")
+    assert_equal "secret", Envoker.fetch("SECRET")
   end
 
   test "return default if not exists" do

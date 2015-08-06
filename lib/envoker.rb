@@ -15,7 +15,7 @@ module Envoker
   def self.load(file = DEFAULT)
     return unless File.exists?(file)
 
-    parse(file).each { |k, v| ENV[k] ||= k }
+    parse(file).each { |k, v| ENV[k] ||= v }
   end
 
   def self.parse(file)
