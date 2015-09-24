@@ -13,7 +13,7 @@ module Envoker
   end
 
   def self.load(file = DEFAULT)
-    return unless File.exists?(file)
+    return unless File.exist?(file)
 
     parse(file).each { |k, v| ENV[k] ||= v }
   end
