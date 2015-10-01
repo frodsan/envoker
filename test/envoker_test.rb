@@ -1,4 +1,3 @@
-require "bundler/setup"
 require "cutest"
 require_relative "../lib/envoker"
 
