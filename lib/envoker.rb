@@ -1,28 +1,25 @@
 require_relative "envoker/version"
 
 module Envoker
-  DEFAULT = ".env"
-  SETTINGS = /(.+)=(.*)$/
+  KeyNotFound = Class.new(StandardError)
 
-  class KeyNotFound < StandardError
-    MESSAGE = "%s not found in .env file or environment settings."
-
-    def initialize(key)
-      super(sprintf(MESSAGE, key.inspect))
-    end
+  def self.load(file)
+    parse(file).each { |k, v| ENV[k] ||= v }
+  rescue Errno::ENOENT
   end
 
-  def self.load(file = DEFAULT)
-    return unless File.exist?(file)
-
-    parse(file).each { |k, v| ENV[k] ||= v }
+  def self.overload(file)
+    parse(file).each { |k, v| ENV[k] = v }
+  rescue Errno::ENOENT
   end
 
   def self.parse(file)
-    return File.read(file).scan(SETTINGS)
+    return File.read(file).scan(/(.+)=(.*)$/)
   end
 
   def self.fetch(key, default = nil)
-    return ENV.fetch(key, default) || raise(KeyNotFound, key)
+    return ENV.fetch(key) do
+      raise(KeyNotFound, sprintf("ENV[%p] not found", key))
+    end
   end
 end

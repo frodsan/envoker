@@ -1,12 +1,12 @@
 require "cutest"
 require_relative "../lib/envoker"
+require_relative "../lib/envoker/rack"
 
 FILE = File.expand_path(".env.example", __dir__)
 
-def test(*)
-  defaults = ENV.to_hash
-  super
-ensure
+defaults = ENV.to_hash
+
+setup do
   ENV.replace(defaults)
 end
 
@@ -36,6 +36,16 @@ scope "load" do
   end
 end
 
+scope "overload" do
+  test "override environment vars" do
+    ENV["SECRET"] = "supersecret"
+
+    Envoker.overload(FILE)
+
+    assert_equal "secret", ENV["SECRET"]
+  end
+end
+
 scope "fetch" do
   test "return value from ENV" do
     Envoker.load(FILE)
@@ -43,13 +53,17 @@ scope "fetch" do
     assert_equal "secret", Envoker.fetch("SECRET")
   end
 
-  test "return default if not exists" do
-    assert_equal "secret", Envoker.fetch("notexists", "secret")
-  end
-
   test "raise error if key not exists" do
     assert_raise do
       Envoker.fetch("notexists")
     end
   end
+end
+
+test "rack" do
+  Envoker::Rack.load(FILE)
+
+  assert_equal "secret", Envoker.fetch("SECRET")
+  assert_equal "development", Envoker.fetch("ENVIRONMENT")
+  assert_equal "true", Envoker.fetch("OVERRIDED")
 end
