@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.description = s.summary
   s.authors     = ["Francesco Rodríguez"]
   s.email       = ["frodsan@protonmail.ch"]
-  s.homepage    = "https://github.com/harmoni/envoker"
+  s.homepage    = "https://github.com/frodsan/envoker"
   s.license     = "MIT"
 
   s.files = `git ls-files`.split("\n")
