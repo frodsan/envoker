@@ -46,24 +46,10 @@ scope "overload" do
   end
 end
 
-scope "fetch" do
-  test "return value from ENV" do
-    Envoker.load(FILE)
-
-    assert_equal "secret", Envoker.fetch("SECRET")
-  end
-
-  test "raise error if key not exists" do
-    assert_raise do
-      Envoker.fetch("notexists")
-    end
-  end
-end
-
 test "rack" do
   Envoker::Rack.load(FILE)
 
-  assert_equal "secret", Envoker.fetch("SECRET")
-  assert_equal "development", Envoker.fetch("ENVIRONMENT")
-  assert_equal "true", Envoker.fetch("OVERRIDED")
+  assert_equal "secret", ENV.fetch("SECRET")
+  assert_equal "development", ENV.fetch("ENVIRONMENT")
+  assert_equal "true", ENV.fetch("OVERRIDED")
 end
