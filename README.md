@@ -34,10 +34,10 @@ module Settings
     return ENV.fetch(key) do
       raise(sprintf("ENV[%p] not found", key))
     end
-
-    REDIS_URL = fetch("REDIS_URL")
-    SMTP_URL  = fetch("SMTP_URL")
   end
+
+  REDIS_URL = fetch("REDIS_URL")
+  SMTP_URL  = fetch("SMTP_URL")
 end
 ```
 
