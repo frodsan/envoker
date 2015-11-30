@@ -51,5 +51,4 @@ test "rack" do
 
   assert_equal "secret", ENV.fetch("SECRET")
   assert_equal "development", ENV.fetch("ENVIRONMENT")
-  assert_equal "true", ENV.fetch("OVERRIDED")
 end
