@@ -11,16 +11,37 @@ process:
 
 ```ruby
 # .env
-REDIS_URL=redis://localhost:6379
+RACK_ENV=development
 
 # boot.rb
 require "envoker"
 
 Envoker.load
 
-ENV["REDIS_URL"]
-# => REDIS_URL=redis://localhost:6379
+ENV["RACK_ENV"]
+# => "development"
 ```
+
+You can use `Envoker#overload` to override
+existing values in `ENV`:
+
+```ruby
+# .env.test
+RACK_ENV=test
+
+# boot.rb
+# ...
+
+Envoker.overload(".env.test")
+
+ENV["RACK_ENV"]
+# => "test"
+```
+
+Multiple Environments
+---------------------
+
+`Envoker::Rack` adds support for multiple environments:
 
 ```ruby
 require "envoker/rack"
@@ -28,7 +49,23 @@ require "envoker/rack"
 Envoker::Rack.load
 ```
 
-This is a common pattern we use in our applications:
+You should store env vars that are general to
+all environments in `.env`, and store specific
+env vars in `.env.<environment>`.The default
+environment is `development`, but can be changed
+through `ENV["RACK_ENV"]`.
+
+```ruby
+ENV["RACK_ENV"] = "test"
+
+# This will load `.env` and `.env.test`
+Envoker::Rack.load
+```
+
+Settings
+--------
+
+This is a common pattern I use in my applications:
 
 ```ruby
 require "envoker/rack"
