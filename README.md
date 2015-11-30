@@ -6,16 +6,20 @@ Load environment variables from `.env` files.
 Usage
 -----
 
-This is a common pattern we use in our applications:
+Load your `.env` file in the application bootstrap
+process:
 
 ```ruby
+# .env
+REDIS_URL=redis://localhost:6379
+
+# boot.rb
 require "envoker"
 
 Envoker.load
 
-Envoker.load(".env.local")
-
-Envoker.overload(".env.local")
+ENV["REDIS_URL"]
+# => REDIS_URL=redis://localhost:6379
 ```
 
 ```ruby
@@ -23,6 +27,8 @@ require "envoker/rack"
 
 Envoker::Rack.load
 ```
+
+This is a common pattern we use in our applications:
 
 ```ruby
 require "envoker/rack"
@@ -39,6 +45,9 @@ module Settings
   REDIS_URL = fetch("REDIS_URL")
   SMTP_URL  = fetch("SMTP_URL")
 end
+
+Settings::SMTP_URL
+# => redis://localhost:6379
 ```
 
 Installation
