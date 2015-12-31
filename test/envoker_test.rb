@@ -44,6 +44,8 @@ class EnvokerTest < Minitest::Test
   end
 
   test "rack" do
+    ENV["RACK_ENV"] = "development"
+
     Envoker::Rack.load(FILE)
 
     assert_equal "secret", ENV.fetch("SECRET")
