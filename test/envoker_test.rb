@@ -1,22 +1,22 @@
-require "cutest"
+require "bundler/setup"
+require "minitest/autorun"
+require "minitest/pride"
+require "minitest/sugar"
 require_relative "../lib/envoker"
 require_relative "../lib/envoker/rack"
 
-FILE = File.expand_path(".env.example", __dir__)
+class EnvokerTest < Minitest::Test
+  FILE = File.expand_path(".env.example", __dir__)
+  DEFAULT_ENV = ENV.to_hash
 
-defaults = ENV.to_hash
+  setup do
+    ENV.replace(DEFAULT_ENV)
+  end
 
-setup do
-  ENV.replace(defaults)
-end
-
-scope "parse" do
   test "ignore wrong environment lines" do
     assert_equal 1, Envoker.parse(FILE).count
   end
-end
 
-scope "load" do
   test "don't raise if file doesn't exist" do
     assert !Envoker.load(".notexists")
   end
@@ -34,9 +34,7 @@ scope "load" do
 
     assert_equal "supersecret", ENV["SECRET"]
   end
-end
 
-scope "overload" do
   test "override environment vars" do
     ENV["SECRET"] = "supersecret"
 
@@ -44,11 +42,11 @@ scope "overload" do
 
     assert_equal "secret", ENV["SECRET"]
   end
-end
 
-test "rack" do
-  Envoker::Rack.load(FILE)
+  test "rack" do
+    Envoker::Rack.load(FILE)
 
-  assert_equal "secret", ENV.fetch("SECRET")
-  assert_equal "development", ENV.fetch("ENVIRONMENT")
+    assert_equal "secret", ENV.fetch("SECRET")
+    assert_equal "development", ENV.fetch("ENVIRONMENT")
+  end
 end

@@ -3,14 +3,16 @@ require_relative "lib/envoker/version"
 Gem::Specification.new do |s|
   s.name        = "envoker"
   s.version     = Envoker::VERSION
-  s.summary     = "Load environment variables from `.env`"
+  s.summary     = "Load environment variables from .env"
   s.description = s.summary
-  s.authors     = ["Francesco Rodríguez"]
-  s.email       = ["frodsan@protonmail.ch"]
+  s.author      = "Francesco Rodríguez"
+  s.email       = "frodsan@protonmail.ch"
   s.homepage    = "https://github.com/frodsan/envoker"
   s.license     = "MIT"
 
-  s.files = `git ls-files`.split("\n")
+  s.files      = Dir["LICENSE", "README.md", "lib/**/*.rb"]
+  s.test_files = Dir["test/**/*.rb"]
 
-  s.add_development_dependency "cutest", "~> 1.2"
+  s.add_development_dependency "minitest", "~> 5.8"
+  s.add_development_dependency "minitest-sugar", "~> 2.1"
 end
