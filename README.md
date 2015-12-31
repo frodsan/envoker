@@ -1,7 +1,28 @@
-envoker [![Build Status](https://travis-ci.org/frodsan/envoker.svg)](https://travis-ci.org/frodsan/envoker)
+Envoker [![Build Status](https://travis-ci.org/frodsan/envoker.svg)](https://travis-ci.org/frodsan/envoker)
 =======
 
 Load environment variables from `.env` files.
+
+Installation
+------------
+
+Add this line to your application's Gemfile:
+
+```ruby
+gem "envoker"
+```
+
+And then execute:
+
+```
+$ bundle
+```
+
+Or install it yourself as:
+
+```
+$ gem install envoker
+```
 
 Usage
 -----
@@ -87,9 +108,33 @@ Settings::SMTP_URL
 # => redis://localhost:6379
 ```
 
-Installation
+Contributing
 ------------
 
+Fork the project with:
+
 ```
-$ gem install envoker
+$ git clone git@github.com:frodsan/envoker.git
 ```
+
+To install dependencies, use:
+
+```
+$ bundle install
+```
+
+To run the test suite, do:
+
+```
+$ rake test
+```
+
+For bug reports and pull requests use [GitHub][issues].
+
+License
+-------
+
+Envoker is released under the [MIT License][mit].
+
+[mit]: http://www.opensource.org/licenses/MIT
+[issues]: https://github.com/frodsan/envoker/issues
