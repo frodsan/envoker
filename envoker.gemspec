@@ -6,8 +6,8 @@ Gem::Specification.new do |s|
   s.summary     = "Load environment variables from .env"
   s.description = s.summary
   s.author      = "Francesco Rodríguez"
-  s.email       = "frodsan@protonmail.ch"
-  s.homepage    = "https://github.com/frodsan/envoker"
+  s.email       = "hello@frodsan.com"
+  s.homepage    = "https://gitlab.com/frodsan/envoker"
   s.license     = "MIT"
 
   s.files      = Dir["LICENSE", "README.md", "lib/**/*.rb"]
