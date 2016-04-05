@@ -1,4 +1,4 @@
-Envoker [![Build Status](https://travis-ci.org/frodsan/envoker.svg)](https://travis-ci.org/frodsan/envoker)
+Envoker
 =======
 
 Load environment variables from `.env` files.
