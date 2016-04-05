@@ -114,7 +114,7 @@ Contributing
 Fork the project with:
 
 ```
-$ git clone git@github.com:frodsan/envoker.git
+$ git clone https://gitlab.com/frodsan/envoker.git
 ```
 
 To install dependencies, use:
@@ -129,7 +129,7 @@ To run the test suite, do:
 $ rake test
 ```
 
-For bug reports and pull requests use [GitHub][issues].
+For bug reports and pull requests use [GitLab][issues].
 
 License
 -------
@@ -137,4 +137,4 @@ License
 Envoker is released under the [MIT License][mit].
 
 [mit]: http://www.opensource.org/licenses/MIT
-[issues]: https://github.com/frodsan/envoker/issues
+[issues]: https://gitlab.com/frodsan/envoker/issues
