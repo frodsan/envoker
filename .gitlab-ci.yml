@@ -1,10 +1,7 @@
 image: ruby:2.3
 
 before_script:
-  - export LANG=en_US.UTF-8
-  - export LANGUAGE=en_US.UTF-8
-  - export LC_ALL=en_US.UTF-8
-  - bundler --version
+  - apt-get update -yqqq
   - bundle install --jobs $(nproc)
 
 minitest:
