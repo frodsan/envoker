@@ -1,0 +1,14 @@
+before_script:
+  - apt-get update -qq
+  - ruby -v
+  - which ruby
+  - gem install bundler --no-ri --no-rdoc
+  - bundle install --jobs $(nproc)  "${FLAGS[@]}"
+
+minitest:
+  script:
+    - bundle exec rake test
+
+rubocop:
+  script:
+    - bundle exec rake rubocop
