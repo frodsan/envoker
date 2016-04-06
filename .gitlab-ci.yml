@@ -1,11 +1,6 @@
 image: ruby:2.3
 
-variables:
 before_script:
-  - locale
-  - locale-gen "en_US.UTF-8"
-  - dpkg-reconfigure locales
-  - apt-get update -yqqq
   - bundle install --jobs $(nproc)
 
 minitest:

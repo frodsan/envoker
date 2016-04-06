@@ -5,7 +5,7 @@ Gem::Specification.new do |s|
   s.version     = Envoker::VERSION
   s.summary     = "Load environment variables from .env"
   s.description = s.summary
-  s.author      = "Francesco Rodríguez"
+  s.author      = "Francesco Rodriguez"
   s.email       = "hello@frodsan.com"
   s.homepage    = "https://gitlab.com/frodsan/envoker"
   s.license     = "MIT"
