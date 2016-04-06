@@ -12,6 +12,6 @@ module Envoker
   end
 
   def self.parse(file)
-    return File.read(file).scan(/(.+)=(.*)$/)
+    File.read(file).scan(/(.+)=(.*)$/)
   end
 end
