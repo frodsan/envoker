@@ -1,4 +1,4 @@
-Envoker
+Envoker [![Build Status](https://gitlab.com/frodsan/envoker/badges/master/build.svg)](https://gitlab.com/frodsan/envoker/builds)
 =======
 
 Load environment variables from `.env` files.
