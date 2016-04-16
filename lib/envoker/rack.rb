@@ -6,7 +6,7 @@ module Envoker
   module Rack
     def self.load(file = ".env")
       Envoker.load(file)
-      Envoker.overload(format("%s.%s", file, environment))
+      Envoker.overload(sprintf("%s.%s", file, environment))
     end
 
     def self.environment
