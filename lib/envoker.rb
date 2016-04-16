@@ -6,11 +6,13 @@ module Envoker
   def self.load(file)
     parse(file).each { |k, v| ENV[k] ||= v }
   rescue Errno::ENOENT
+    nil
   end
 
   def self.overload(file)
     parse(file).each { |k, v| ENV[k] = v }
   rescue Errno::ENOENT
+    nil
   end
 
   def self.parse(file)
